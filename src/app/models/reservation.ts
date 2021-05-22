@@ -6,5 +6,5 @@ export interface Reservation {
   created_at: string;
   valid_until: string;
   valid_from: string;
-  tours?: string[];
+  plans?: string[];
 }

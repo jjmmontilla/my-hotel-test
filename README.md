@@ -10,9 +10,9 @@ These instructions will allow you to create a copy of this base repository in or
 Duplicate this repository to create a new repo for your project.
 
 ```
-$ git clone --mirror git@example.com/upstream-repository.git
+$ git clone --mirror https://github.com/jjmmontilla/my-hotel-test.git
 $ cd upstream-repository.git
-$ git push --mirror git@example.com/new-location.git
+$ git push --mirror https://github.com/jjmmontilla/my-hotel-test.git
 ```
 
 ### Install dependencies
@@ -39,6 +39,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Autores
+## Authors
 
-* **Josefina Montilla** - *Trabajo inicial* - 21-05-2021
+* **Josefina Montilla** - *Initial work* - 21-05-2021

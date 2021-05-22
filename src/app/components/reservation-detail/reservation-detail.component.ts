@@ -67,12 +67,11 @@ export class ReservationDetailComponent implements OnInit, OnChanges {
       ],
       created_at: [ (this.reservation && this.reservation.created_at) ?  this.reservation.created_at : null,
       ],
-      tours: [ (this.reservation && this.reservation.tours) ?  this.reservation.tours : null,
+      plans: [ (this.reservation && this.reservation.plans) ?  this.reservation.plans : null,
       ]
     });
 
     this.controlHotel.valueChanges.subscribe( res => {
-      console.log('-----res', res);
       this.formReserva.controls.hotel.setValue(res);
     });
 
@@ -85,19 +84,25 @@ export class ReservationDetailComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    console.log('------this.formReserva.value', this.formReserva.value);
-    this.response.emit({data: this.formReserva.value});
+    /**Emit responser for component father handle the reservation */
+    this.response.emit({type: 'submit', data: this.formReserva.value});
   }
 
-  sectionTours(event, list) {
-    let newTours = [];
+  cancel () {
+    this.formReserva.reset();
+    this.controlHotel.reset();
+    this.response.emit({type: 'cancel', data: this.formReserva.value});
+  }
+
+  selectPlan(event, list) {
+    let newPlan = [];
 
     if (list.length) {
       list.forEach(element => {
-        newTours.push(element.value);
+        newPlan.push(element.value);
       });
     }
 
-    this.formReserva.controls.tours.setValue(newTours);
+    this.formReserva.controls.plans.setValue(newPlan);
   }
 }

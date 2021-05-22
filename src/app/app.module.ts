@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MatSortModule } from '@angular/material/sort';
 //import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatListModule,
     MatCardModule,
     MatSelectModule,
+    MatSortModule,
     //NgxSpinnerModule,
     ToastrModule.forRoot()
   ],

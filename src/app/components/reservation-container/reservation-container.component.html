@@ -1,14 +1,6 @@
 
-
 <ng-container *ngIf="!showList">
-  <div class="">
-    <div class="banner">
-      <div class="banner-cont">
-        <h2>Welcome </h2>
-        <button mat-raised-button (click)="showList=!showList">Start</button>
-      </div>
-    </div>
-  </div>
+  <app-banner [title]="'Welcome'" [showBtn]="true"></app-banner>
 
   <div class="container hotel-gallery">
     <ng-container *ngFor="let hotel of hotelData; let i = index;">

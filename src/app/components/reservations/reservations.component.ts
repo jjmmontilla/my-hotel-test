@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, ViewChild, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import { Reservation } from 'src/app/models/reservation';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ReservationService } from 'src/app/services/reservation.service';
 import * as moment from 'moment';
@@ -33,21 +33,28 @@ export class ReservationsComponent implements OnInit, OnChanges, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.reservationData) {
+      this.dataSource = new MatTableDataSource(this.reservationData);
+    }
+
     this._rs.reservations.subscribe( resp => {
       this.reservationData = resp;
       this.dataSource = new MatTableDataSource(this.reservationData);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
   ngAfterViewInit() {
-    //this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(changes) {
     if (changes.reservationData && changes.reservationData.currentValue) {
       this.dataSource = new MatTableDataSource(this.reservationData);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     }
   }
 
@@ -92,18 +99,22 @@ export class ReservationsComponent implements OnInit, OnChanges, AfterViewInit {
 
   }
 
-  public newReserva() {
+  public addReserva() {
     this.infoEdit = null;
     this.showForm = true;
   }
 
+  /**
+   * @param event It's response of formReserva. Value is equal to event.data
+   * Void
+   */
   handleForm(event) {
-    console.log('------', event);
-
-    if (event)  {
+    if (event && event.type == 'submit')  {
       if (this.infoEdit == null) {
         let formData = event.data;
         formData['id'] = this.reservationData.length;
+
+        formData['created_at'] = moment();
 
         this._rs.addReservation(formData).then(resp => {
           this.toastr.success('Created Successfully.!');
@@ -117,15 +128,26 @@ export class ReservationsComponent implements OnInit, OnChanges, AfterViewInit {
         });
         this.showForm = !this.showForm;
       }
+    } else {
+      this.showForm = !this.showForm;
     }
 
   }
 
+  /**
+   * @param reserva
+   * @returns Boolean If date is between in range
+   */
   isValidReserva(reserva) {
     let isvalid = false;
-    if (moment().isBetween(reserva.valid_from, reserva.valid_until)) {
+    if (moment().isBefore(reserva.valid_from) && moment().isBefore(reserva.valid_until)) {
       isvalid = true;
+    } else {
+      if (moment().isBetween(reserva.valid_from, reserva.valid_until)) {
+        isvalid = true;
+      }
     }
+
     return isvalid;
   }
 

@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button aria-label="Menu" matTooltip="Menu">
+  <button mat-icon-button aria-label="Menu" matTooltip="Menu" (click)="goToReservations()">
     <i class="fas fa-bars"></i>
   </button>
   <span>{{ projectName }}</span>
   <span class="spacer"></span>
 
-  <div class="profile-user">
+  <div class="profile-user" *ngIf="user">
     <span class="profile-username">{{ user.first_name }}</span>
-    <button mat-mini-fab color="accent" aria-label="Profile" matTooltip="Profile" matTooltipPosition="below">
+    <button mat-mini-fab color="accent" aria-label="Profile" matTooltip="Profile" matTooltipPosition="below" (click)="goToProfile()">
       <i class="fas fa-user"></i>
     </button>
   </div>

@@ -85,3 +85,44 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-left: 1rem !important;
   }
 }
+
+.container{
+  width: 90%;
+  margin: auto;
+
+  &-fluid {
+    min-height: calc(100vh - (39px + 64px));
+  }
+}
+
+.banner{
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  background-image: url('../src/assets/banner/reservation-banner.jpg');
+  background-size: cover;
+  position: relative;
+
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(90deg, rgba(1,0,15,1) 0%, rgba(6,6,8,0.15199583251269255) 45%, rgba(239,247,249,1) 100%);
+  }
+
+  &-cont{
+    text-align: center;
+    z-index: 100;
+
+    h2{
+      font-family: 'Pattaya', sans-serif !important;
+      color: white;
+      font-size: 3rem;
+    }
+  }
+}

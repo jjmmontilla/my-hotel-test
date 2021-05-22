@@ -1,4 +1,4 @@
-
+<!--Form form Edit and Add reserva-->
 <ng-container *ngIf="formReserva">
   <form [formGroup]="formReserva" (ngSubmit)="onSubmit()" class="pb-2">
     <p class="xl text-left text-strong">
@@ -13,15 +13,6 @@
 
       </mat-form-field>
     </p>
-
-    <!--p>
-      <mat-form-field appearance="legacy">
-        <mat-label>Hotel</mat-label>
-        <input matInput placeholder="Hotel" formControlName="hotel" class="appFirstCapital">
-        <mat-error *ngIf="formReserva.controls.hotel.errors">This field is required</mat-error>
-
-      </mat-form-field>
-    </p-->
 
     <p>
       <mat-form-field appearance="legacy">
@@ -64,15 +55,22 @@
 
     <p class="text-left">Plan</p>
     <p>
-      <mat-selection-list #tours (selectionChange)="sectionTours($event, tours.selectedOptions.selected)">
-        <mat-list-option *ngFor="let tour of typesOfTour" [value]="tour" [selected]="reservation && reservation.tours && reservation.tours.includes(tour)">
+      <mat-selection-list #plans (selectionChange)="selectPlan($event, plans.selectedOptions.selected)">
+        <mat-list-option *ngFor="let tour of typesOfTour" [value]="tour" [selected]="reservation && reservation.plans && reservation.plans.includes(tour)">
           {{ tour }}
         </mat-list-option>
       </mat-selection-list>
     </p>
 
     <div class="text-right cont-btns">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!formReserva.valid || !controlHotel.valid">Save</button>
+      <button mat-raised-button (click)="cancel()" class="mr-1">
+        Cancel
+      </button>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formReserva.valid || !controlHotel.valid">
+        Save
+      </button>
+
     </div>
   </form>
 </ng-container>

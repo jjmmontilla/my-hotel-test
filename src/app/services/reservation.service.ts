@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Reservation } from '../models/reservation';
 
@@ -6,24 +7,34 @@ import { Reservation } from '../models/reservation';
   providedIn: 'root'
 })
 export class ReservationService {
+  public profile: any = {
+    first_name: 'Josefina',
+    last_name: 'Montilla',
+    rut: '27.488.613-7',
+    img: 'https://media-exp1.licdn.com/dms/image/C5603AQF-dfA8iqS8rg/profile-displayphoto-shrink_100_100/0/1526570285839?e=1626912000&v=beta&t=2GRkP7si5bYVOExq46rSSKKZkOwThdT3dcj_oxZzY-I',
+    email: 'jjmmontilla@gmail.com',
+    linkedin: 'www.linkedin.com/in/josefina-johana-montilla-medina-609b5955',
+    skills: ['Angular', 'Javascritp', 'jQuery', 'Ruby on Rails', 'CSS3', 'SASS', 'HTML', 'GIT', 'MySQL', 'Bootstrap', 'Material', 'MongoDB']
+  };
+
   private list: Reservation[] = [
     { id: 1,
       full_name: 'Jeff White',
       hotel: '',
-      person_num: 2,
+      person_num: 4,
       created_at: '2021-01-20 13:05:00',
       valid_from: '2021-01-20 13:05:00',
       valid_until: '2021-02-12 13:05:00',
-      tours: null
+      plans: null
     },
     { id: 2,
       full_name: 'Paul Smith',
       hotel: 'Marriot',
-      person_num: 2,
+      person_num: 1,
       created_at: '2021-03-20 13:05:00',
       valid_from: '2021-03-20 13:05:00',
       valid_until: '2021-11-22 13:05:00',
-      tours: ['Basic Plan', 'Buffet']
+      plans: ['Basic Plan', 'Buffet']
     },
     { id: 3,
       full_name: 'Karen Ash',
@@ -32,16 +43,16 @@ export class ReservationService {
       created_at: '2021-04-20 13:05:00',
       valid_from: '2021-04-20 13:05:00',
       valid_until: '2021-09-22 13:05:00',
-      tours: null
+      plans: null
     },
     { id: 4,
       full_name: 'Sarah Wallie',
       hotel: '',
-      person_num: 2,
+      person_num: 6,
       created_at: '2021-05-01 13:05:00',
       valid_from: '2021-05-01 13:05:00',
       valid_until: '2021-05-13 13:05:00',
-      tours: ['Full Day', 'Full Day With Pics']
+      plans: ['Full Day', 'Full Day With Pics']
     }
   ];
 
@@ -70,14 +81,34 @@ export class ReservationService {
   ];
 
   public reservations = new Subject<Reservation[]>();
+  public showReserva = new Subject<any>();
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+  public showReservation(show) {
+
+    setTimeout( () => {
+      this.showReserva.next(show);
+    }, 600);
+  }
 
   public getReservations(){
     let p = new Promise( (resolve, reject) => {
       setTimeout(() => {
         resolve(this.list);
       }, Math.floor(Math.random() * 300));
+    });
+
+    return p
+  }
+
+  public getProfile(){
+    let p = new Promise( (resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.profile);
+      }, Math.floor(Math.random() * 500));
     });
 
     return p

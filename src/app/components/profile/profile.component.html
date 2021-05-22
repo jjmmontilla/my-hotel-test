@@ -1,1 +1,38 @@
-<p>profile works!</p>
+<!-- HTML for profile view -->
+
+<app-banner [title]="'Profile'"></app-banner>
+
+<div class="container">
+  <button mat-icon-button (click)="backHome()" matTooltip="Back">
+    <i class="fas fa-chevron-left"></i> Back
+  </button>
+
+  <mat-card class="card mat-elevation-z3" *ngIf="user">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': 'url('+user.img+')'}"></div>
+      <mat-card-title>{{ user.first_name }} {{user.last_name}}</mat-card-title>
+      <mat-card-subtitle>Rut: {{ user.rut }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <strong>Email</strong>
+      <p>{{user.email}}</p>
+
+      <strong>Linkedin</strong>
+      <p>
+        <a href="user.linkedin" target="_blank">{{user.linkedin}}</a>
+      </p>
+
+      <strong>Sklis</strong>
+      <p>
+        <ng-container *ngFor="let skill of user.skills; let i=index">
+          <span>{{ (i > 0) ? ', '+skill : skill }}</span>
+        </ng-container>
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

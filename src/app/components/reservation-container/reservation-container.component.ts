@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Reservation } from 'src/app/models/reservation';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './reservation-container.component.html',
   styleUrls: ['./reservation-container.component.scss']
 })
-export class ReservationContainerComponent implements OnInit {
+export class ReservationContainerComponent implements OnInit, OnDestroy {
   /**Variable with reservation information */
   public rData: Reservation[];
   /**Variable for show reserva list */
@@ -30,6 +30,10 @@ export class ReservationContainerComponent implements OnInit {
     this._rs.getHotels().then( (resp :any) => {
       this.hotelData = resp;
     });
+
+    this._rs.showReserva.subscribe( resp => {
+      this.showList = true;
+    });
   }
 
   addWishlit(hotel) {
@@ -39,6 +43,9 @@ export class ReservationContainerComponent implements OnInit {
     } else {
       this.toastr.success('Removed successfully', hotel.name);
     }
+  }
+
+  ngOnDestroy() {
   }
 
 }

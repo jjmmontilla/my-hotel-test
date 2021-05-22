@@ -10,6 +10,7 @@ import { FirstCapitalDirective } from './directives/first-capital.directive';
 import { UppercaseDirective } from './directives/uppercase.directive';
 import { MomentPipe } from './pipes/moments.pipe';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     UppercaseDirective,
     FirstCapitalDirective,
     DialogComponent,
+    BannerComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
     FooterComponent,
     MomentPipe,
     UppercaseDirective,
-    FirstCapitalDirective
+    FirstCapitalDirective,
+    BannerComponent
   ]
 })
 export class SharedModule { }

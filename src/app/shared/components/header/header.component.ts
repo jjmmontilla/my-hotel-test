@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 @Component({
   selector: 'app-header',
@@ -6,19 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public projectName: string = 'My Reservation - Test';
+  public projectName: string = 'My Reservation';
 
-  public user: any = {
-    first_name: 'Josefina',
-    last_name: 'Montilla',
-    rut: '27.488.613-7',
-    email: 'jjmmontilla@gmail.com',
-    linkedin: 'www.linkedin.com/in/josefina-johana-montilla-medina-609b5955',
-    skills: ['Angular', 'Javascritp', 'jQuery', 'Ruby on Rails', 'CSS3', 'SASS', 'HTML', 'GIT', 'MySQL', 'Bootstrap', 'Material', 'MongoDB']
-  }
-  constructor() { }
+  public user: any;
+
+  constructor(
+    private router: Router,
+    private _rs: ReservationService
+  ) { }
 
   ngOnInit(): void {
+    this._rs.getProfile().then( resp => {
+      this.user = resp;
+    });
+  }
+
+  goToReservations() {
+    this.router.navigate(['/']);
+    this._rs.showReservation(true);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
   }
 
 }
