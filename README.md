@@ -11,7 +11,7 @@ Duplicate this repository to create a new repo for your project.
 
 ```
 $ git clone --mirror https://github.com/jjmmontilla/my-hotel-test.git
-$ cd upstream-repository.git
+$ cd my-hotel-test
 $ git push --mirror https://github.com/jjmmontilla/my-hotel-test.git
 ```
 
