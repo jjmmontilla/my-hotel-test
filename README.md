@@ -12,7 +12,6 @@ Duplicate this repository to create a new repo for your project.
 ```
 $ git clone https://github.com/jjmmontilla/my-hotel-test.git
 $ cd my-hotel-test
-$ git push --mirror https://github.com/jjmmontilla/my-hotel-test.git
 ```
 
 ### Install dependencies
