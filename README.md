@@ -10,7 +10,7 @@ These instructions will allow you to create a copy of this base repository in or
 Duplicate this repository to create a new repo for your project.
 
 ```
-$ git clone --mirror https://github.com/jjmmontilla/my-hotel-test.git
+$ git clone https://github.com/jjmmontilla/my-hotel-test.git
 $ cd my-hotel-test
 $ git push --mirror https://github.com/jjmmontilla/my-hotel-test.git
 ```
