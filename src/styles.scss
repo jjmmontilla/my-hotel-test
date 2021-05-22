@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+
+// regular style toast
+@import '~ngx-toastr/toastr';
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+
+@import './assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.d-flex{
+  display: flex!important;
+}
+
+.justify-content-end{
+  justify-content: flex-end!important;
+}
+
+.text{
+  &-xl{
+    font-size: 2rem;
+  }
+
+  &-right{
+    text-align: right !important;
+  }
+
+  &-left{
+    text-align: left !important;
+  }
+
+  &-center{
+    text-align: center !important;
+  }
+
+  &-danger {
+    color: #dc3545!important;
+  }
+
+  &-strong{
+    font-weight: 600;
+    padding-bottom: 1rem;
+  }
+}
+
+.pt{
+  &-1{
+    padding-top: .5rem !important;
+  }
+  &-2{
+    padding-top: 1rem !important;
+  }
+}
+
+.pb{
+  &-1{
+    padding-bottom: .5rem !important;
+  }
+  &-2{
+    padding-bottom: 1rem !important;
+  }
+}
+
+.mr{
+  &-1{
+    margin-right: .5rem !important;
+  }
+
+  &-2{
+    margin-right: 1rem !important;
+  }
+}
+
+.ml{
+  &-1{
+    margin-left: .5rem !important;
+  }
+  &-2{
+    margin-left: 1rem !important;
+  }
+}

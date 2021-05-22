@@ -1,0 +1,79 @@
+
+<ng-container *ngIf="formReserva">
+  <form [formGroup]="formReserva" (ngSubmit)="onSubmit()" class="pb-2">
+    <p class="xl text-left text-strong">
+      {{ (reservation) ? 'Edit Reservation' : 'Add New Resavation' }}
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Full Name</mat-label>
+        <input matInput placeholder="Full Name" formControlName="full_name" class="appUppercase" required>
+        <mat-error *ngIf="formReserva.controls.full_name.errors">This field is required</mat-error>
+
+      </mat-form-field>
+    </p>
+
+    <!--p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Hotel</mat-label>
+        <input matInput placeholder="Hotel" formControlName="hotel" class="appFirstCapital">
+        <mat-error *ngIf="formReserva.controls.hotel.errors">This field is required</mat-error>
+
+      </mat-form-field>
+    </p-->
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Hotel</mat-label>
+        <mat-select [formControl]="controlHotel" name="hotel"  required>
+          <mat-option value="Marriot">Marriot</mat-option>
+          <mat-option value="DoubleTree by Hilton">DoubleTree by Hilton</mat-option>
+          <mat-option value="AC Hotel by Marriott">AC Hotel by Marriott</mat-option>
+        </mat-select>
+        <mat-error *ngIf="controlHotel.errors">This field is required</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Persons #</mat-label>
+        <input matInput placeholder="Persons #" type="number" [min]="1" formControlName="person_num" required>
+
+        <mat-error *ngIf="formReserva.controls.person_num.errors">This field is required</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Valid</mat-label>
+        <mat-date-range-input
+          [formGroup]="formReserva"
+          [rangePicker]="campaignPicker"
+          [comparisonStart]="formReserva.value.valid_from"
+          [comparisonEnd]="formReserva.value.valid_until" required>
+          <input matStartDate placeholder="Start date" formControlName="valid_from">
+          <input matEndDate placeholder="End date" formControlName="valid_until">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="campaignPicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignPicker></mat-date-range-picker>
+
+        <mat-error *ngIf="formReserva.controls.valid_until.errors || formReserva.controls.valid_from.errors">This field is required</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p class="text-left">Plan</p>
+    <p>
+      <mat-selection-list #tours (selectionChange)="sectionTours($event, tours.selectedOptions.selected)">
+        <mat-list-option *ngFor="let tour of typesOfTour" [value]="tour" [selected]="reservation && reservation.tours && reservation.tours.includes(tour)">
+          {{ tour }}
+        </mat-list-option>
+      </mat-selection-list>
+    </p>
+
+    <div class="text-right cont-btns">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formReserva.valid || !controlHotel.valid">Save</button>
+    </div>
+  </form>
+</ng-container>
+

@@ -1,0 +1,48 @@
+
+
+<ng-container *ngIf="!showList">
+  <div class="">
+    <div class="banner">
+      <div class="banner-cont">
+        <h2>Welcome </h2>
+        <button mat-raised-button (click)="showList=!showList">Start</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hotel-gallery">
+    <ng-container *ngFor="let hotel of hotelData; let i = index;">
+      <mat-card class="card mat-elevation-z2">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': 'url('+hotel.profile+')'}"></div>
+          <mat-card-title>{{ hotel.name }}</mat-card-title>
+          <mat-card-subtitle>{{ hotel.title }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="hotel.banner" alt="Marroit">
+        <mat-card-content>
+          <p>
+            {{ hotel.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="addWishlit(hotel)">
+            <i class="" [ngClass]="hotel.like ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>
+            {{ (hotel.like == true ) ? 'I love' : 'Add'}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="showList">
+  <div class="container container-fluid pt-2">
+    <button mat-icon-button (click)="showList=!showList" matTooltip="Back">
+      <i class="fas fa-chevron-left"></i> Back
+    </button>
+    <app-reservations [reservationData]="rData"></app-reservations>
+  </div>
+</ng-container>
+
+
+

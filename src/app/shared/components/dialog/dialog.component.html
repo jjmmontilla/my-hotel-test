@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+  <p *ngIf="data.title">
+    {{data.title}}
+  </p>
+
+   <div class="service-container pt-3 pb-3">
+     <div [innerHTML]="data.content"></div>
+   </div>
+
+   <div *ngIf="data.buttons">
+     <div [ngClass]="(data.classContainerBtn) ? data.classContainerBtn : ''">
+        <ng-container *ngFor="let btn of data.buttons">
+          <button mat-button (click)="response(btn.response)" class="mr-2" [ngClass]="(btn.class) ? btn.class : '' ">
+            {{ btn.title }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+ </div>

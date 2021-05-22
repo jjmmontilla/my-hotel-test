@@ -2,6 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
+## To get started
+
+These instructions will allow you to create a copy of this base repository in order to create a new deployment project.
+
+### Crear nuevo proyecto
+Duplicate this repository to create a new repo for your project.
+
+```
+$ git clone --mirror git@example.com/upstream-repository.git
+$ cd upstream-repository.git
+$ git push --mirror git@example.com/new-location.git
+```
+
+### Install dependencies
+
+The following command automatically looks at that list and installs the dependencies that are listed in the _package.json_, along with other dependencies they require.
+
+```
+$ npm install
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -18,10 +39,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Autores
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* **Josefina Montilla** - *Trabajo inicial* - 21-05-2021
